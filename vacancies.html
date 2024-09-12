@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Native - Job Vacancies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .vacancy-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .vacancy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .vacancy-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .vacancy-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+        }
+
+        .vacancy-info img {
+            width: 16px;
+            margin-right: 8px;
+        }
+
+        .apply-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .apply-btn:hover {
+            background-color: #2d9249;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="https://via.placeholder.com/40" alt="Digital Native Logo">
+                <h1>DIGITAL <span>NATIVE</span></h1>
+            </div>
+            <nav>
+                <a href="index.html" class="nav-item">My Profile</a>
+                <a href="vacancies.html" class="nav-item active">Job Vacancies</a>
+                <a href="campus-drive.html" class="nav-item">Campus Drive</a>
+                <a href="#" class="nav-item">Everyone</a>
+                <a href="#" class="nav-item">Departments</a>
+                <a href="#" class="nav-item">Org Chart</a>
+                <a href="#" class="nav-item">+ Submit Expenses</a>
+                <a href="#" class="nav-item">+ Book Time Off</a>
+                <a href="#" class="nav-item">+ New Employee</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="page-header">
+                <h2>Job Vacancies</h2>
+                <button class="btn" onclick="addVacancy()">+ Add New Vacancy</button>
+            </div>
+            <div class="grid" id="vacanciesList">
+                <!-- Vacancies will be dynamically added here -->
+            </div>
+        </main>
+    </div>
+    <script>
+        const vacancies = [
+            { title: "Senior Software Engineer", department: "Engineering", location: "San Francisco, CA" },
+            { title: "Product Manager", department: "Product", location: "New York, NY" },
+            { title: "UX Designer", department: "Design", location: "Remote" },
+            { title: "Data Analyst", department: "Analytics", location: "Chicago, IL" },
+            { title: "Marketing Specialist", department: "Marketing", location: "Los Angeles, CA" }
+        ];
+
+        function renderVacancies() {
+            const vacanciesList = document.getElementById('vacanciesList');
+            vacanciesList.innerHTML = '';
+            vacancies.forEach(vacancy => {
+                const vacancyCard = document.createElement('div');
+                vacancyCard.className = 'vacancy-card';
+                vacancyCard.innerHTML = `
+                    <h3>${vacancy.title}</h3>
+                    <div class="vacancy-info">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='2' y='7' width='20' height='14' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'%3E%3C/path%3E%3C/svg%3E" alt="Department">
+                        <span>${vacancy.department}</span>
+                    </div>
+                    <div class="vacancy-info">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'%3E%3C/path%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C/circle%3E%3C/svg%3E" alt="Location">
+                        <span>${vacancy.location}</span>
+                    </div>
+                    <button class="apply-btn" onclick="applyForJob('${vacancy.title}')">Apply</button>
+                `;
+                vacanciesList.appendChild(vacancyCard);
+            });
+        }
+
+        function addVacancy() {
+            const title = prompt("Enter job title:");
+            const department = prompt("Enter department:");
+            const location = prompt("Enter location:");
+            if (title && department && location) {
+                vacancies.push({ title, department, location });
+                renderVacancies();
+            }
+        }
+
+        function applyForJob(jobTitle) {
+            alert(`Application submitted for ${jobTitle}`);
+        }
+
+        // Initial render
+        renderVacancies();
+    </script>
+</body>
+
+</html>

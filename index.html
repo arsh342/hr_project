@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Native - HR Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #000000;
+      --secondary-color: #666666;
+      --background-color: #ffffff;
+      --sidebar-background: #f0f0f0;
+      --highlight-color: #e8f5e9;
+    }
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      height: 100%;
+    }
+
+    .container {
+      display: flex;
+      height: 100%;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: var(--sidebar-background);
+      padding: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .logo h1 {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+
+    .logo span {
+      font-weight: 300;
+    }
+
+    .nav-item {
+      display: block;
+      padding: 10px 0;
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 30px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .edit-btn {
+      background-color: transparent;
+      border: 1px solid var(--secondary-color);
+      padding: 5px 15px;
+      cursor: pointer;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .profile-item {
+      margin-bottom: 20px;
+    }
+
+    .profile-item h3 {
+      color: var(--secondary-color);
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .profile-item p {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .highlight {
+      background-color: var(--highlight-color);
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .bio {
+      grid-column: span 3;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="/api/placeholder/40/40" alt="Digital Native Logo">
+        <h1>DIGITAL <span>NATIVE</span></h1>
+      </div>
+      <nav>
+        <a href="#" class="nav-item">Everyone</a>
+        <a href="#" class="nav-item">Departments</a>
+        <a href="#" class="nav-item">Org Chart</a>
+        <a href="#" class="nav-item">My Profile</a>
+        <a href="#" class="nav-item">+ Submit Expenses</a>
+        <a href="#" class="nav-item">+ Book Time Off</a>
+        <a href="#" class="nav-item">+ New Employee</a>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <div class="header">
+        <h1>Jenn Cooper</h1>
+        <button class="edit-btn">EDIT</button>
+      </div>
+      <div class="profile-grid">
+        <div class="profile-item">
+          <h3>START DATE</h3>
+          <p class="highlight">9/6/2024</p>
+        </div>
+        <div class="profile-item">
+          <h3>POSITION</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMAIL</h3>
+          <p>jcooper@example.com</p>
+        </div>
+        <div class="profile-item">
+          <h3>LOCATION</h3>
+          <p class="highlight">San Francisco</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMPLOYMENT TYPE</h3>
+          <p>Full-time</p>
+        </div>
+        <div class="profile-item">
+          <h3>MANAGER</h3>
+          <p>Pat Everet</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMERGENCY CONTACT</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMERGENCY CONTACT EMAIL</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMERGENCY CONTACT NUMBER</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>INTERESTS</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item bio">
+          <h3>BIO</h3>
+          <p>I am an accomplished coder and programmer, and I enjoy using my skills to contribute to the exciting
+            technological advances that happen every day at Main & Co. I graduated from the California Institute of
+            Technology in 2016 with a Bachelor's Degree in Software Development. While in school, I earned the 2015
+            Edmund Gains Award for my exemplary academic performance and leadership skills.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
