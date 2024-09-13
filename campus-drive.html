@@ -8,16 +8,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .page-header h2 {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .btn:hover {
+            background-color: #333;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
         .event-card {
-            background-color: white;
+            background-color: var(--card-background);
             border-radius: 8px;
             box-shadow: var(--shadow);
             padding: 20px;
-            transition: transform 0.3s;
+            transition: transform var(--transition-speed) ease;
         }
 
         .event-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
         .event-card h3 {
@@ -38,18 +75,57 @@
         }
 
         .register-btn {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-color);
             color: white;
             border: none;
             padding: 8px 16px;
             cursor: pointer;
             border-radius: 4px;
             margin-top: 15px;
-            transition: background-color 0.3s;
+            transition: background-color var(--transition-speed) ease;
         }
 
         .register-btn:hover {
-            background-color: #2d9249;
+            background-color: #333;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: var(--text-color);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -63,12 +139,11 @@
                         alt="WorkWise Logo">
                 </div>
                 <nav>
-                    <a href="#" class="nav-item">Everyone</a>
+                    <a href="hr_profile.html" class="nav-item">Dashboard</a>
                     <a href="department.html" class="nav-item">Departments</a>
                     <a href="comp_chart.html" class="nav-item">Org Chart</a>
                     <a href="vacancies.html" class="nav-item">Job Vacancies</a>
                     <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
-                    <a href="hr_profile.html" class="nav-item">My Profile</a>
                 </nav>
             </div>
             <button class="logout-button" onclick="logout()">Logout</button>

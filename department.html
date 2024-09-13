@@ -8,74 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --primary-color: #1a73e8;
-            --secondary-color: #34a853;
-            --background-color: #f8f9fa;
-            --text-color: #202124;
-            --text-secondary: #5f6368;
-            --border-color: #dadce0;
-            --hover-color: #e8f0fe;
-            --shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-
-        .logo h1 {
-            font-size: 20px;
-            font-weight: 500;
-        }
-
-        .logo span {
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        .nav-item {
-            display: block;
-            padding: 10px 15px;
-            margin-bottom: 5px;
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-item:hover {
-            background-color: var(--hover-color);
-            color: var(--primary-color);
-        }
-
         .main-content {
             flex-grow: 1;
             padding: 30px;
@@ -91,7 +23,8 @@
 
         .page-header h2 {
             font-size: 28px;
-            font-weight: 400;
+            font-weight: 500;
+            color: var(--primary-color);
         }
 
         .departments-grid {
@@ -101,28 +34,32 @@
         }
 
         .department-card {
-            background-color: white;
-            border-radius: 8px;
+            height: 200px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             padding: 20px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--primary-color);
         }
 
         .department-card:hover {
             transform: translateY(-5px);
-        }
-
-        .department-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .department-info {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin-bottom: 5px;
-            color: var(--text-secondary);
+            color: white;
         }
 
         .department-info img {
@@ -139,18 +76,20 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
+            background-color: #ffffff;
             padding: 20px;
-            border: 1px solid #888;
+            border: none;
             width: 90%;
             max-width: 800px;
-            border-radius: 8px;
-            max-height: 90vh;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             overflow-y: auto;
         }
 
@@ -159,13 +98,11 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
 
-        .close:hover,
-        .close:focus {
+        .close:hover {
             color: #000;
-            text-decoration: none;
-            cursor: pointer;
         }
 
         .employee-list {
@@ -174,44 +111,37 @@
         }
 
         .employee-card {
-            background-color: var(--background-color);
-            border-radius: 8px;
             padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
             margin-bottom: 15px;
             box-shadow: var(--shadow);
-        }
-
-        .employee-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            background-color: white;
+            transition: box-shadow 0.3s;
         }
 
-        .employee-name {
-            font-weight: 500;
+        .employee-card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .employee-card img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .employee-card h4 {
+            margin-bottom: 5px;
             color: var(--primary-color);
         }
 
-        .employee-position {
-            font-style: italic;
+        .employee-card p {
+            margin: 5px 0;
             color: var(--text-secondary);
-        }
-
-        .employee-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-        }
-
-        .employee-detail {
-            display: flex;
-            align-items: center;
-        }
-
-        .employee-detail img {
-            width: 16px;
-            margin-right: 8px;
         }
 
         @media (max-width: 768px) {
@@ -239,20 +169,17 @@
 <body>
     <div class="container">
         <aside class="sidebar">
-            <div>
-                <div class="logo">
-                    <img src="https://i.postimg.cc/qqLRVPRj/workwise-high-resolution-logo-black-transparent.png"
-                        alt="WorkWise Logo">
-                </div>
-                <nav>
-                    <a href="#" class="nav-item">Everyone</a>
-                    <a href="department.html" class="nav-item">Departments</a>
-                    <a href="comp_chart.html" class="nav-item">Org Chart</a>
-                    <a href="vacancies.html" class="nav-item">Job Vacancies</a>
-                    <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
-                    <a href="hr_profile.html" class="nav-item">My Profile</a>
-                </nav>
+            <div class="logo">
+                <img src="https://i.postimg.cc/qqLRVPRj/workwise-high-resolution-logo-black-transparent.png"
+                    alt="WorkWise Logo">
             </div>
+            <nav>
+                <a href="hr_profile.html" class="nav-item">Dashboard</a>
+                <a href="department.html" class="nav-item">Departments</a>
+                <a href="comp_chart.html" class="nav-item">Org Chart</a>
+                <a href="vacancies.html" class="nav-item">Job Vacancies</a>
+                <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
+            </nav>
             <button class="logout-button" onclick="logout()">Logout</button>
         </aside>
         <main class="main-content">
@@ -271,7 +198,7 @@
             <h2 id="modalDepartmentName"></h2>
             <p id="modalTeamLeader"></p>
             <h3>Employees:</h3>
-            <div id="modalEmployeeList" class="employee-list"></div>
+            <ul id="employeeList" class="employee-list"></ul>
         </div>
     </div>
 
@@ -282,119 +209,84 @@
                 name: "Engineering",
                 employeeCount: 50,
                 teamLeader: "John Doe",
+                color: "#1a73e8",
                 employees: [
-                    { id: 1, name: "John Doe", position: "Team Leader", email: "john.doe@example.com", phone: "+1 (555) 123-4567", hireDate: "2018-05-15", skills: ["JavaScript", "React", "Node.js"] },
-                    { id: 2, name: "Jane Smith", position: "Senior Developer", email: "jane.smith@example.com", phone: "+1 (555) 234-5678", hireDate: "2019-03-20", skills: ["Python", "Django", "AWS"] },
-                    { id: 3, name: "Bob Johnson", position: "Developer", email: "bob.johnson@example.com", phone: "+1 (555) 345-6789", hireDate: "2020-09-10", skills: ["Java", "Spring", "Docker"] },
+                    { id: 1, name: "John Doe", position: "Team Leader", email: "john.doe@example.com", phone: "+1 (555) 123-4567", hireDate: "2010-01-15", skills: ["JavaScript", "React", "Node.js"], image: "https://randomuser.me/api/portraits/men/1.jpg" },
+                    { id: 2, name: "Jane Smith", position: "Software Engineer", email: "jane.smith@example.com", phone: "+1 (555) 234-5678", hireDate: "2015-03-22", skills: ["Python", "Django", "SQL"], image: "https://randomuser.me/api/portraits/women/2.jpg" },
+                    { id: 3, name: "Emily Johnson", position: "DevOps Engineer", email: "emily.johnson@example.com", phone: "+1 (555) 345-6789", hireDate: "2018-07-30", skills: ["AWS", "Docker", "Kubernetes"], image: "https://randomuser.me/api/portraits/women/3.jpg" }
                 ]
             },
             {
                 id: 2,
                 name: "Marketing",
                 employeeCount: 30,
-                teamLeader: "Alice Brown",
+                teamLeader: "Alice Green",
+                color: "#e53935",
                 employees: [
-                    { id: 4, name: "Alice Brown", position: "Team Leader", email: "alice.brown@example.com", phone: "+1 (555) 456-7890", hireDate: "2017-11-01", skills: ["Digital Marketing", "SEO", "Content Strategy"] },
-                    { id: 5, name: "Charlie Davis", position: "Marketing Specialist", email: "charlie.davis@example.com", phone: "+1 (555) 567-8901", hireDate: "2019-07-15", skills: ["Social Media Marketing", "Email Campaigns", "Analytics"] },
-                    { id: 6, name: "Eva White", position: "Content Creator", email: "eva.white@example.com", phone: "+1 (555) 678-9012", hireDate: "2021-02-28", skills: ["Copywriting", "Graphic Design", "Video Editing"] },
-                ]
-            },
-            {
-                id: 3,
-                name: "Human Resources",
-                employeeCount: 15,
-                teamLeader: "Grace Taylor",
-                employees: [
-                    { id: 7, name: "Grace Taylor", position: "Team Leader", email: "grace.taylor@example.com", phone: "+1 (555) 789-0123", hireDate: "2016-08-01", skills: ["Talent Acquisition", "Employee Relations", "HR Strategy"] },
-                    { id: 8, name: "David Wilson", position: "HR Manager", email: "david.wilson@example.com", phone: "+1 (555) 890-1234", hireDate: "2018-12-10", skills: ["Performance Management", "Compensation & Benefits", "Training & Development"] },
-                    { id: 9, name: "Fiona Clark", position: "Recruiter", email: "fiona.clark@example.com", phone: "+1 (555) 901-2345", hireDate: "2020-06-15", skills: ["Sourcing", "Interviewing", "Employer Branding"] },
+                    { id: 4, name: "Alice Green", position: "Team Leader", email: "alice.green@example.com", phone: "+1 (555) 456-7890", hireDate: "2012-05-11", skills: ["SEO", "Content Marketing", "Social Media"], image: "https://randomuser.me/api/portraits/women/4.jpg" },
+                    { id: 5, name: "Bob Brown", position: "Marketing Specialist", email: "bob.brown@example.com", phone: "+1 (555) 567-8901", hireDate: "2017-09-05", skills: ["Advertising", "Campaign Management", "Analytics"], image: "https://randomuser.me/api/portraits/men/5.jpg" }
                 ]
             }
         ];
 
-        function renderDepartments() {
-            const departmentsGrid = document.getElementById('departmentsGrid');
-            departmentsGrid.innerHTML = '';
-            departments.forEach(department => {
-                const departmentCard = document.createElement('div');
-                departmentCard.className = 'department-card';
-                departmentCard.innerHTML = `
+        const departmentsGrid = document.getElementById('departmentsGrid');
+        const departmentModal = document.getElementById('departmentModal');
+        const modalDepartmentName = document.getElementById('modalDepartmentName');
+        const modalTeamLeader = document.getElementById('modalTeamLeader');
+        const employeeList = document.getElementById('employeeList');
+        const closeModal = document.querySelector('.close');
+
+        function createDepartmentCard(department) {
+            const card = document.createElement('div');
+            card.className = 'department-card';
+            card.style.backgroundColor = department.color;
+            card.innerHTML = `
+                <div class="department-info">
                     <h3>${department.name}</h3>
-                    <div class="department-info">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='9' cy='7' r='4'%3E%3C/circle%3E%3Cpath d='M23 21v-2a4 4 0 0 0-3-3.87'%3E%3C/path%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'%3E%3C/path%3E%3C/svg%3E" alt="Employees">
-                        <span>${department.employeeCount} employees</span>
-                    </div>
-                    <div class="department-info">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E" alt="Team Leader">
-                        <span>Team Leader: ${department.teamLeader}</span>
-                    </div>
-                `;
-                departmentCard.onclick = () => showDepartmentDetails(department);
-                departmentsGrid.appendChild(departmentCard);
-            });
+                </div>
+                <div>${department.employeeCount} employees</div>
+                <div>Team Leader: ${department.teamLeader}</div>
+            `;
+            card.addEventListener('click', () => showDepartmentDetails(department));
+            departmentsGrid.appendChild(card);
         }
 
         function showDepartmentDetails(department) {
-            const modal = document.getElementById('departmentModal');
-            const modalDepartmentName = document.getElementById('modalDepartmentName');
-            const modalTeamLeader = document.getElementById('modalTeamLeader');
-            const modalEmployeeList = document.getElementById('modalEmployeeList');
-
             modalDepartmentName.textContent = department.name;
             modalTeamLeader.textContent = `Team Leader: ${department.teamLeader}`;
-
-            modalEmployeeList.innerHTML = '';
+            employeeList.innerHTML = '';
             department.employees.forEach(employee => {
-                const employeeCard = document.createElement('div');
+                const employeeCard = document.createElement('li');
                 employeeCard.className = 'employee-card';
                 employeeCard.innerHTML = `
-                    <div class="employee-header">
-                        <span class="employee-name">${employee.name}</span>
-                        <span class="employee-position">${employee.position}</span>
-                    </div>
-                    <div class="employee-details">
-                        <div class="employee-detail">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'%3E%3C/path%3E%3Cpolyline points='22,6 12,13 2,6'%3E%3C/polyline%3E%3C/svg%3E" alt="Email">
-                            <span>${employee.email}</span>
-                        </div>
-                        <div class="employee-detail">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'%3E%3C/path%3E%3C/svg%3E" alt="Phone">
-                            <span>${employee.phone}</span>
-                        </div>
-                        <div class="employee-detail">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E" alt="Hire Date">
-                            <span>Hired: ${employee.hireDate}</span>
-                        </div>
-                        <div class="employee-detail">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='4' y1='9' x2='20' y2='9'%3E%3C/line%3E%3Cline x1='4' y1='15' x2='20' y2='15'%3E%3C/line%3E%3Cline x1='10' y1='3' x2='8' y2='21'%3E%3C/line%3E%3Cline x1='16' y1='3' x2='14' y2='21'%3E%3C/line%3E%3C/svg%3E" alt="Skills">
-                            <span>Skills: ${employee.skills.join(', ')}</span>
-                        </div>
+                    <img src="${employee.image}" alt="${employee.name}">
+                    <div>
+                        <h4>${employee.name}</h4>
+                        <p>Position: ${employee.position}</p>
+                        <p>Email: ${employee.email}</p>
+                        <p>Phone: ${employee.phone}</p>
+                        <p>Hire Date: ${employee.hireDate}</p>
+                        <p>Skills: ${employee.skills.join(', ')}</p>
                     </div>
                 `;
-                modalEmployeeList.appendChild(employeeCard);
+                employeeList.appendChild(employeeCard);
             });
-
-            modal.style.display = 'block';
+            departmentModal.style.display = 'flex';
         }
 
-        // Close modal when clicking on <span> (x)
-        document.getElementsByClassName('close')[0].onclick = function () {
-            document.getElementById('departmentModal').style.display = 'none';
-        }
+        closeModal.addEventListener('click', () => {
+            departmentModal.style.display = 'none';
+        });
 
-        // Close modal when clicking outside of it
         window.onclick = function (event) {
-            const modal = document.getElementById('departmentModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            if (event.target === departmentModal) {
+                departmentModal.style.display = 'none';
             }
         }
 
-        // Initial render
-        renderDepartments();
-
+        departments.forEach(createDepartmentCard);
         function logout() {
-            window.location.href = 'index.html'; // Redirect to the signup page
+            window.location.href = 'index.html';
         }
     </script>
 </body>

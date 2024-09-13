@@ -7,9 +7,10 @@
     <title>ProHire Portal - Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #000;
+            --primary-color: #ff6f61;
             --secondary-color: #e74c3c;
             --background-color: #f4f7f9;
             --card-background: #ffffff;
@@ -54,6 +55,8 @@
             text-align: center;
             color: var(--primary-color);
             margin-bottom: 1.5rem;
+            font-size: 24px;
+            font-weight: 600;
         }
 
         .logo {
@@ -79,7 +82,7 @@
             text-align: center;
             padding: 0.75rem;
             background-color: var(--background-color);
-            border: none;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
             cursor: pointer;
             transition: background-color var(--transition-speed) ease;
@@ -91,6 +94,7 @@
         .nav-button:hover {
             background-color: var(--primary-color);
             color: white;
+            border: 1px solid var(--primary-color);
         }
 
         .form-group {
@@ -165,6 +169,7 @@
             <img src="https://i.postimg.cc/qqLRVPRj/workwise-high-resolution-logo-black-transparent.png"
                 alt="WorkWise Logo">
         </div>
+        <h1>Login</h1>
         <div class="button-group">
             <button class="nav-button" id="hrButton">HR</button>
             <button class="nav-button" id="employeeButton">Employee</button>
@@ -193,9 +198,8 @@
 
         // Redirects on button click
         document.getElementById('employeeButton').addEventListener('click', () => {
-            window.location.href = ''; // Redirect to Employee page
+            window.location.href = ''; // Redirect to Employee page (Specify URL)
         });
-
 
         // Sample user data (for demonstration purposes only)
         const users = [

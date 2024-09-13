@@ -17,6 +17,7 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            color: var(--primary-color);
         }
 
         .subtitle {
@@ -62,7 +63,7 @@
             position: absolute;
             top: 0;
             right: 50%;
-            border-top: 1px solid #ccc;
+            border-top: 1px solid var(--border-color);
             width: 50%;
             height: 20px;
         }
@@ -70,44 +71,11 @@
         .tree li::after {
             right: auto;
             left: 50%;
-            border-left: 1px solid #ccc;
-        }
-
-        .tree li:only-child::after,
-        .tree li:only-child::before {
-            display: none;
-        }
-
-        .tree li:only-child {
-            padding-top: 0;
-        }
-
-        .tree li:first-child::before,
-        .tree li:last-child::after {
-            border: 0 none;
-        }
-
-        .tree li:last-child::before {
-            border-right: 1px solid #ccc;
-            border-radius: 0 5px 0 0;
-        }
-
-        .tree li:first-child::after {
-            border-radius: 5px 0 0 0;
-        }
-
-        .tree ul ul::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            border-left: 1px solid #ccc;
-            width: 0;
-            height: 20px;
+            border-left: 1px solid var(--border-color);
         }
 
         .tree li div {
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
             padding: 10px;
             text-decoration: none;
             color: var(--text-color);
@@ -115,21 +83,14 @@
             display: inline-block;
             border-radius: 5px;
             transition: all 0.5s;
-            background-color: white;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .tree li div:hover,
-        .tree li div:hover+ul li div {
+        .tree li div:hover {
             background: var(--hover-color);
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
-        }
-
-        .tree li div:hover+ul li::after,
-        .tree li div:hover+ul li::before,
-        .tree li div:hover+ul::before,
-        .tree li div:hover+ul ul::before {
-            border-color: var(--primary-color);
         }
 
         .tree li div h3 {
@@ -148,6 +109,7 @@
             cursor: pointer;
             font-size: 18px;
             margin-top: 5px;
+            color: var(--primary-color);
         }
 
         .collapsed>ul {
@@ -155,11 +117,12 @@
         }
 
         .employee-image {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             margin-bottom: 10px;
-            size: cover;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
         }
 
         @media (max-width: 768px) {
@@ -188,19 +151,18 @@
                         alt="WorkWise Logo">
                 </div>
                 <nav>
-                    <a href="#" class="nav-item">Everyone</a>
+                    <a href="hr_profile.html" class="nav-item">Dashboard</a>
                     <a href="department.html" class="nav-item">Departments</a>
                     <a href="comp_chart.html" class="nav-item">Org Chart</a>
                     <a href="vacancies.html" class="nav-item">Job Vacancies</a>
                     <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
-                    <a href="hr_profile.html" class="nav-item">My Profile</a>
                 </nav>
             </div>
             <button class="logout-button" onclick="logout()">Logout</button>
         </aside>
         <main class="main-content">
             <h1>Organizational Chart</h1>
-            <p class="subtitle">Explore how teams, people and departments are connected.</p>
+            <p class="subtitle">Explore how teams, people, and departments are connected.</p>
             <div class="skills-chart" id="skillsChart"></div>
         </main>
     </div>
@@ -222,63 +184,60 @@
                     name: 'Jenn Cooper', post: 'VP, HR', specialty: ' ', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1029-1024x683.jpg',
                     children: [
                         { name: 'Mitchell', post: 'HR Manager', specialty: 'Employee Relations', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-2397-1-2-1024x683.jpg' },
-                        { name: 'Nora', post: 'Recruiter', specialty: 'Technical Recruiting', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-755-1-1024x683.jpg' },
-                        { name: 'Olivia', post: 'Training Specialist', specialty: 'Leadership Development', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1941-1024x683.jpg' }
-                    ]
-                },
-                {
-                    name: 'Lara Smith', post: 'VP, Marketing', specialty: ' ', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-797-1024x683.jpg',
-                    children: [
-                        { name: 'Parker', post: 'Marketing Manager', specialty: 'Brand Management', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1029-1024x683.jpg' },
-                        { name: 'Quinn', post: 'Content Writer', specialty: 'SEO Copywriting', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1210-1024x683.jpg' },
-                        { name: 'Riley', post: 'SEO Specialist', specialty: 'Technical SEO', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-2397-1-2-1024x683.jpg' }
+                        { name: 'Olivia', post: 'Talent Acquisition', specialty: 'Recruitment Strategies', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1941-1024x683.jpg' },
+                        { name: 'Michael', post: 'Training Coordinator', specialty: 'Learning & Development', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1029-1024x683.jpg' }
                     ]
                 }
             ]
         };
 
-
-        function createTreeElement(item) {
+        const createEmployeeNode = (data) => {
             const li = document.createElement('li');
             const div = document.createElement('div');
-            div.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="employee-image">
-                <h3>${item.name}</h3>
-                <p>${item.post}</p>
-                <p><small>${item.specialty}</small></p>
-            `;
+
+            const img = document.createElement('img');
+            img.src = data.image;
+            img.alt = data.name;
+            img.classList.add('employee-image');
+
+            const h3 = document.createElement('h3');
+            h3.textContent = data.name;
+
+            const post = document.createElement('p');
+            post.textContent = data.post;
+
+            const specialty = document.createElement('p');
+            specialty.textContent = data.specialty;
+
+            div.appendChild(img);
+            div.appendChild(h3);
+            div.appendChild(post);
+            div.appendChild(specialty);
+
             li.appendChild(div);
 
-            if (item.children && item.children.length > 0) {
+            if (data.children) {
                 const ul = document.createElement('ul');
-                item.children.forEach(child => {
-                    ul.appendChild(createTreeElement(child));
+                data.children.forEach(child => {
+                    ul.appendChild(createEmployeeNode(child));
                 });
                 li.appendChild(ul);
-
-                const toggleBtn = document.createElement('button');
-                toggleBtn.className = 'toggle-btn';
-                toggleBtn.textContent = '▼';
-                toggleBtn.addEventListener('click', () => {
-                    li.classList.toggle('collapsed');
-                    toggleBtn.textContent = li.classList.contains('collapsed') ? '▶' : '▼';
-                });
-                div.appendChild(toggleBtn);
             }
 
             return li;
-        }
+        };
 
         const skillsChart = document.getElementById('skillsChart');
         const tree = document.createElement('div');
-        tree.className = 'tree';
+        tree.classList.add('tree');
         const ul = document.createElement('ul');
-        ul.appendChild(createTreeElement(skillsData));
+
+        ul.appendChild(createEmployeeNode(skillsData));
         tree.appendChild(ul);
         skillsChart.appendChild(tree);
 
         function logout() {
-            window.location.href = 'index.html'; // Redirect to the signup page
+            window.location.href = 'index.html';
         }
     </script>
 </body>
