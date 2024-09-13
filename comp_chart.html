@@ -155,10 +155,11 @@
         }
 
         .employee-image {
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             margin-bottom: 10px;
+            size: cover;
         }
 
         @media (max-width: 768px) {
@@ -206,35 +207,36 @@
 
     <script>
         const skillsData = {
-            name: 'Pat Everet', post: 'CEO', specialty: ' ', image: '/api/placeholder/60/60',
+            name: 'Pat Everet', post: 'CEO', specialty: ' ', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1210-1024x683.jpg',
             children: [
                 {
-                    name: 'Robby Steward', post: 'VP, Engineering', specialty: ' ', image: '/api/placeholder/60/60',
+                    name: 'Robby Steward', post: 'VP, Engineering', specialty: ' ', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-797-1024x683.jpg',
                     children: [
-                        { name: 'Cameron', post: 'Software Engineer', specialty: 'Full-stack Development', image: '/api/placeholder/60/60' },
-                        { name: 'Dylan', post: 'UX Designer', specialty: 'User-Centered Design', image: '/api/placeholder/60/60' },
-                        { name: 'Ella', post: 'Data Analyst', specialty: 'Big Data Analytics', image: '/api/placeholder/60/60' },
-                        { name: 'Fiona', post: 'DevOps Engineer', specialty: 'CI/CD Pipelines', image: '/api/placeholder/60/60' }
+                        { name: 'Cameron', post: 'Software Engineer', specialty: 'Full-stack Development', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-2397-1-2-1024x683.jpg' },
+                        { name: 'Dylan', post: 'UX Designer', specialty: 'User-Centered Design', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1029-1024x683.jpg' },
+                        { name: 'Ella', post: 'Data Analyst', specialty: 'Big Data Analytics', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-755-1-1024x683.jpg' },
+                        { name: 'Fiona', post: 'DevOps Engineer', specialty: 'CI/CD Pipelines', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1941-1024x683.jpg' }
                     ]
                 },
                 {
-                    name: 'Jenn Cooper', post: 'VP, HR', specialty: ' ', image: '/api/placeholder/60/60',
+                    name: 'Jenn Cooper', post: 'VP, HR', specialty: ' ', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1029-1024x683.jpg',
                     children: [
-                        { name: 'Mitchell', post: 'HR Manager', specialty: 'Employee Relations', image: '/api/placeholder/60/60' },
-                        { name: 'Nora', post: 'Recruiter', specialty: 'Technical Recruiting', image: '/api/placeholder/60/60' },
-                        { name: 'Olivia', post: 'Training Specialist', specialty: 'Leadership Development', image: '/api/placeholder/60/60' }
+                        { name: 'Mitchell', post: 'HR Manager', specialty: 'Employee Relations', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-2397-1-2-1024x683.jpg' },
+                        { name: 'Nora', post: 'Recruiter', specialty: 'Technical Recruiting', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-755-1-1024x683.jpg' },
+                        { name: 'Olivia', post: 'Training Specialist', specialty: 'Leadership Development', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1941-1024x683.jpg' }
                     ]
                 },
                 {
-                    name: 'Lara Smith', post: 'VP, Marketing', specialty: ' ', image: '/api/placeholder/60/60',
+                    name: 'Lara Smith', post: 'VP, Marketing', specialty: ' ', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-797-1024x683.jpg',
                     children: [
-                        { name: 'Parker', post: 'Marketing Manager', specialty: 'Brand Management', image: '/api/placeholder/60/60' },
-                        { name: 'Quinn', post: 'Content Writer', specialty: 'SEO Copywriting', image: '/api/placeholder/60/60' },
-                        { name: 'Riley', post: 'SEO Specialist', specialty: 'Technical SEO', image: '/api/placeholder/60/60' }
+                        { name: 'Parker', post: 'Marketing Manager', specialty: 'Brand Management', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1029-1024x683.jpg' },
+                        { name: 'Quinn', post: 'Content Writer', specialty: 'SEO Copywriting', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1210-1024x683.jpg' },
+                        { name: 'Riley', post: 'SEO Specialist', specialty: 'Technical SEO', image: 'https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-2397-1-2-1024x683.jpg' }
                     ]
                 }
             ]
         };
+
 
         function createTreeElement(item) {
             const li = document.createElement('li');
