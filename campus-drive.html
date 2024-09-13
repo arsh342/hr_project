@@ -17,7 +17,7 @@
         }
 
         .event-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
         }
 
         .event-card h3 {
@@ -57,37 +57,42 @@
 <body>
     <div class="container">
         <aside class="sidebar">
-            <div class="logo">
-                <img src="https://via.placeholder.com/40" alt="Digital Native Logo">
-                <h1>DIGITAL <span>NATIVE</span></h1>
+            <div>
+                <div class="logo">
+                    <img src="https://i.postimg.cc/qqLRVPRj/workwise-high-resolution-logo-black-transparent.png"
+                        alt="WorkWise Logo">
+                </div>
+                <nav>
+                    <a href="#" class="nav-item">Everyone</a>
+                    <a href="department.html" class="nav-item">Departments</a>
+                    <a href="comp_chart.html" class="nav-item">Org Chart</a>
+                    <a href="vacancies.html" class="nav-item">Job Vacancies</a>
+                    <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
+                    <a href="index.html" class="nav-item">My Profile</a>
+                </nav>
             </div>
-            <nav>
-                <a href="index.html" class="nav-item">My Profile</a>
-                <a href="vacancies.html" class="nav-item">Job Vacancies</a>
-                <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
-                <a href="#" class="nav-item">Everyone</a>
-                <a href="#" class="nav-item">Departments</a>
-                <a href="#" class="nav-item">Org Chart</a>
-                <a href="#" class="nav-item">+ Submit Expenses</a>
-                <a href="#" class="nav-item">+ Book Time Off</a>
-                <a href="#" class="nav-item">+ New Employee</a>
-            </nav>
+            <button class="logout-button" onclick="logout()">Logout</button>
         </aside>
         <main class="main-content">
             <div class="page-header">
                 <h2>Campus Drive Events</h2>
                 <button class="btn" onclick="addEvent()">+ Add New Event</button>
             </div>
+            <hr>
             <div class="grid" id="eventsList">
                 <!-- Events will be dynamically added here -->
             </div>
         </main>
     </div>
     <script>
+
+        function logout() {
+            window.location.href = 'signUp.html'; // Redirect to the signup page
+        }
         const events = [
             { title: "Software Engineering Internship Drive", university: "MIT", date: "September 15, 2024", location: "MIT Campus, Cambridge, MA" },
             { title: "Data Science Graduate Program Recruitment", university: "Stanford University", date: "October 5, 2024", location: "Stanford Campus, Stanford, CA" },
-            { title: "Product Management Info Session", university: "Harvard University", date: "November 10, 2024", location: "Harvard Business School, Boston, MA" }
+            { title: "Product Management Information Session", university: "Harvard University", date: "November 10, 2024", location: "Harvard Business School, Boston, MA" }
         ];
 
         function renderEvents() {
@@ -110,7 +115,7 @@
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'%3E%3C/path%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C/circle%3E%3C/svg%3E" alt="Location">
                         <span>${event.location}</span>
                     </div>
-                    <button class="register-btn" onclick="registerForEvent('${event.title}')">Register</button>
+                    <button class="register-btn" onclick="registerForEvent('${event.title}')">Recruit</button>
                 `;
                 eventsList.appendChild(eventCard);
             });

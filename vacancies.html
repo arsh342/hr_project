@@ -8,16 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
+        .grid {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
         .vacancy-card {
             background-color: white;
             border-radius: 8px;
             box-shadow: var(--shadow);
             padding: 20px;
             transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .vacancy-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
         }
 
         .vacancy-card h3 {
@@ -37,19 +45,82 @@
             margin-right: 8px;
         }
 
-        .apply-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 15px;
-            transition: background-color 0.3s;
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
         }
 
-        .apply-btn:hover {
-            background-color: #2d9249;
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .applicant-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .applicant-card {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .applicant-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .applicant-info {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 3px;
+        }
+
+        .applicant-skills {
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background-color: #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -57,45 +128,190 @@
 <body>
     <div class="container">
         <aside class="sidebar">
-            <div class="logo">
-                <img src="https://via.placeholder.com/40" alt="Digital Native Logo">
-                <h1>DIGITAL <span>NATIVE</span></h1>
+            <div>
+                <div class="logo">
+                    <img src="https://i.postimg.cc/qqLRVPRj/workwise-high-resolution-logo-black-transparent.png"
+                        alt="WorkWise Logo">
+                </div>
+                <nav>
+                    <a href="#" class="nav-item">Everyone</a>
+                    <a href="department.html" class="nav-item">Departments</a>
+                    <a href="comp_chart.html" class="nav-item">Org Chart</a>
+                    <a href="vacancies.html" class="nav-item">Job Vacancies</a>
+                    <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
+                    <a href="index.html" class="nav-item">My Profile</a>
+                </nav>
             </div>
-            <nav>
-                <a href="index.html" class="nav-item">My Profile</a>
-                <a href="vacancies.html" class="nav-item active">Job Vacancies</a>
-                <a href="campus-drive.html" class="nav-item">Campus Drive</a>
-                <a href="#" class="nav-item">Everyone</a>
-                <a href="#" class="nav-item">Departments</a>
-                <a href="#" class="nav-item">Org Chart</a>
-                <a href="#" class="nav-item">+ Submit Expenses</a>
-                <a href="#" class="nav-item">+ Book Time Off</a>
-                <a href="#" class="nav-item">+ New Employee</a>
-            </nav>
+            <button class="logout-button" onclick="logout()">Logout</button>
         </aside>
         <main class="main-content">
             <div class="page-header">
                 <h2>Job Vacancies</h2>
                 <button class="btn" onclick="addVacancy()">+ Add New Vacancy</button>
             </div>
+            <hr>
             <div class="grid" id="vacanciesList">
                 <!-- Vacancies will be dynamically added here -->
             </div>
         </main>
     </div>
+
+    <!-- Modal for displaying applicants -->
+    <div id="applicantsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="applicantsList" class="applicant-list"></div>
+        </div>
+    </div>
+
     <script>
         const vacancies = [
-            { title: "Senior Software Engineer", department: "Engineering", location: "San Francisco, CA" },
-            { title: "Product Manager", department: "Product", location: "New York, NY" },
-            { title: "UX Designer", department: "Design", location: "Remote" },
-            { title: "Data Analyst", department: "Analytics", location: "Chicago, IL" },
-            { title: "Marketing Specialist", department: "Marketing", location: "Los Angeles, CA" }
+            {
+                title: "Senior Software Engineer",
+                department: "Engineering",
+                location: "San Francisco, CA",
+                applicants: [
+                    {
+                        name: "John Doe",
+                        age: 32,
+                        education: "M.S. in Computer Science",
+                        experience: "8 years",
+                        currentCompany: "Tech Innovators Inc.",
+                        skills: ["Java", "Python", "AWS", "Microservices"]
+                    },
+                    {
+                        name: "Jane Smith",
+                        age: 29,
+                        education: "B.S. in Software Engineering",
+                        experience: "6 years",
+                        currentCompany: "DataDrive Solutions",
+                        skills: ["JavaScript", "React", "Node.js", "MongoDB"]
+                    },
+                    {
+                        name: "Mike Johnson",
+                        age: 35,
+                        education: "Ph.D. in Computer Science",
+                        experience: "10 years",
+                        currentCompany: "AI Frontiers",
+                        skills: ["C++", "Machine Learning", "Distributed Systems"]
+                    }
+                ]
+            },
+            {
+                title: "Product Manager",
+                department: "Product",
+                location: "New York, NY",
+                applicants: [
+                    {
+                        name: "Emily Brown",
+                        age: 31,
+                        education: "MBA",
+                        experience: "5 years",
+                        currentCompany: "Innovate Corp",
+                        skills: ["Agile Methodologies", "User Research", "Data Analysis"]
+                    },
+                    {
+                        name: "David Lee",
+                        age: 28,
+                        education: "B.S. in Business Administration",
+                        experience: "4 years",
+                        currentCompany: "TechStar Startups",
+                        skills: ["Product Strategy", "A/B Testing", "Wireframing"]
+                    }
+                ]
+            },
+            {
+                title: "UX Designer",
+                department: "Design",
+                location: "Remote",
+                applicants: [
+                    {
+                        name: "Sarah Wilson",
+                        age: 27,
+                        education: "B.F.A. in Graphic Design",
+                        experience: "3 years",
+                        currentCompany: "Creative Minds Agency",
+                        skills: ["Figma", "Adobe XD", "User Research", "Prototyping"]
+                    },
+                    {
+                        name: "Tom Davis",
+                        age: 33,
+                        education: "M.S. in Human-Computer Interaction",
+                        experience: "7 years",
+                        currentCompany: "UX Innovators",
+                        skills: ["Sketch", "InVision", "Information Architecture"]
+                    },
+                    {
+                        name: "Lisa Chen",
+                        age: 29,
+                        education: "B.S. in Interaction Design",
+                        experience: "5 years",
+                        currentCompany: "Freelance",
+                        skills: ["UI Design", "User Testing", "Design Systems"]
+                    }
+                ]
+            },
+            {
+                title: "Data Analyst",
+                department: "Analytics",
+                location: "Chicago, IL",
+                applicants: [
+                    {
+                        name: "Alex Turner",
+                        age: 26,
+                        education: "B.S. in Statistics",
+                        experience: "2 years",
+                        currentCompany: "DataCrunch Solutions",
+                        skills: ["SQL", "Python", "Tableau", "Excel"]
+                    },
+                    {
+                        name: "Olivia Martinez",
+                        age: 30,
+                        education: "M.S. in Data Science",
+                        experience: "4 years",
+                        currentCompany: "Big Data Insights",
+                        skills: ["R", "Machine Learning", "Data Visualization"]
+                    }
+                ]
+            },
+            {
+                title: "Marketing Specialist",
+                department: "Marketing",
+                location: "Los Angeles, CA",
+                applicants: [
+                    {
+                        name: "Chris Taylor",
+                        age: 28,
+                        education: "B.A. in Marketing",
+                        experience: "3 years",
+                        currentCompany: "Social Media Gurus",
+                        skills: ["Social Media Marketing", "Content Creation", "SEO"]
+                    },
+                    {
+                        name: "Emma White",
+                        age: 32,
+                        education: "M.S. in Digital Marketing",
+                        experience: "6 years",
+                        currentCompany: "Brand Builders Inc.",
+                        skills: ["Email Marketing", "Google Analytics", "PPC"]
+                    },
+                    {
+                        name: "Ryan Garcia",
+                        age: 25,
+                        education: "B.S. in Business Administration",
+                        experience: "2 years",
+                        currentCompany: "Startup Rocket",
+                        skills: ["Influencer Marketing", "Brand Strategy", "Marketing Analytics"]
+                    }
+                ]
+            }
         ];
 
         function renderVacancies() {
             const vacanciesList = document.getElementById('vacanciesList');
             vacanciesList.innerHTML = '';
-            vacancies.forEach(vacancy => {
+            vacancies.forEach((vacancy, index) => {
                 const vacancyCard = document.createElement('div');
                 vacancyCard.className = 'vacancy-card';
                 vacancyCard.innerHTML = `
@@ -108,8 +324,8 @@
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'%3E%3C/path%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C/circle%3E%3C/svg%3E" alt="Location">
                         <span>${vacancy.location}</span>
                     </div>
-                    <button class="apply-btn" onclick="applyForJob('${vacancy.title}')">Apply</button>
                 `;
+                vacancyCard.onclick = () => showApplicants(index);
                 vacanciesList.appendChild(vacancyCard);
             });
         }
@@ -119,17 +335,62 @@
             const department = prompt("Enter department:");
             const location = prompt("Enter location:");
             if (title && department && location) {
-                vacancies.push({ title, department, location });
+                vacancies.push({ title, department, location, applicants: [] });
                 renderVacancies();
             }
         }
 
-        function applyForJob(jobTitle) {
-            alert(`Application submitted for ${jobTitle}`);
+        function showApplicants(index) {
+            const vacancy = vacancies[index];
+            const modal = document.getElementById('applicantsModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const applicantsList = document.getElementById('applicantsList');
+
+            modalTitle.textContent = `Applicants for ${vacancy.title}`;
+            applicantsList.innerHTML = '';
+
+            if (vacancy.applicants.length === 0) {
+                applicantsList.innerHTML = '<p>No applicants yet.</p>';
+            } else {
+                vacancy.applicants.forEach(applicant => {
+                    const applicantCard = document.createElement('div');
+                    applicantCard.className = 'applicant-card';
+                    applicantCard.innerHTML = `
+                        <div class="applicant-name">${applicant.name}</div>
+                        <div class="applicant-info">Age: ${applicant.age}</div>
+                        <div class="applicant-info">Education: ${applicant.education}</div>
+                        <div class="applicant-info">Experience: ${applicant.experience}</div>
+                        <div class="applicant-info">Current Company: ${applicant.currentCompany}</div>
+                        <div class="applicant-skills">
+                            ${applicant.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                    `;
+                    applicantsList.appendChild(applicantCard);
+                });
+            }
+
+            modal.style.display = 'block';
+        }
+
+        // Close modal when clicking on <span> (x)
+        document.querySelector('.close').onclick = function () {
+            document.getElementById('applicantsModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function (event) {
+            const modal = document.getElementById('applicantsModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         }
 
         // Initial render
         renderVacancies();
+
+        function logout() {
+            window.location.href = 'signUp.html'; // Redirect to the signup page
+        }
     </script>
 </body>
 

@@ -32,6 +32,12 @@ body {
   background-color: white;
   padding: 20px;
   box-shadow: var(--shadow);
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .logo {
@@ -41,18 +47,8 @@ body {
 }
 
 .logo img {
-  width: 40px;
+  width: 200px;
   margin-right: 10px;
-}
-
-.logo h1 {
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.logo span {
-  color: var(--text-secondary);
-  font-weight: 300;
 }
 
 .nav-item {
@@ -65,9 +61,24 @@ body {
   transition: background-color 0.3s;
 }
 
-.nav-item:hover, .nav-item.active {
+.nav-item:hover {
   background-color: var(--hover-color);
   color: var(--primary-color);
+}
+.logout-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #c0392b;
 }
 
 .main-content {
@@ -111,8 +122,9 @@ body {
 }
 
 .grid {
+  padding: 30px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 
