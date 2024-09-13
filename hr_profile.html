@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Native - HR Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-header {
+      margin-top: 100px;
+      margin-bottom: 50px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+      margin: 50px;
+    }
+
+    .profile-item {
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .profile-item h3 {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .profile-item p {
+      font-size: 16px;
+    }
+
+    .highlight {
+      background-color: var(--hover-color);
+      color: var(--primary-color);
+      padding: 5px 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .main-content {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div>
+        <div class="logo">
+          <img src="https://i.postimg.cc/qqLRVPRj/workwise-high-resolution-logo-black-transparent.png"
+            alt="WorkWise Logo">
+        </div>
+        <nav>
+          <a href="#" class="nav-item">Everyone</a>
+          <a href="department.html" class="nav-item">Departments</a>
+          <a href="comp_chart.html" class="nav-item">Org Chart</a>
+          <a href="vacancies.html" class="nav-item">Job Vacancies</a>
+          <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
+          <a href="hr_profile.html" class="nav-item">My Profile</a>
+        </nav>
+      </div>
+      <button class="logout-button" onclick="logout()">Logout</button>
+    </aside>
+    <main class="main-content">
+      <div class="page-header">
+        <div class="name-id">
+          <h2>Jenn Cooper</h2>
+          <p>Emp Id. 094563</p>
+        </div>
+        <button class="btn" onclick="editProfile()">EDIT</button>
+      </div>
+      <hr>
+      <div class="profile-grid">
+        <div class="profile-item">
+          <h3>START DATE</h3>
+          <p class="highlight">9/6/2024</p>
+        </div>
+        <div class="profile-item">
+          <h3>POSITION</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMAIL</h3>
+          <p>jcooper@example.com</p>
+        </div>
+        <div class="profile-item">
+          <h3>LOCATION</h3>
+          <p class="highlight">San Francisco</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMPLOYMENT TYPE</h3>
+          <p>Full-time</p>
+        </div>
+        <div class="profile-item">
+          <h3>MANAGER</h3>
+          <p>Pat Everet</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMERGENCY CONTACT</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMERGENCY CONTACT EMAIL</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>EMERGENCY CONTACT NUMBER</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>INTERESTS</h3>
+          <p>-</p>
+        </div>
+        <div class="profile-item">
+          <h3>BIO</h3>
+          <p>-</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    function editProfile() {
+      alert('Edit functionality not implemented in this demo.');
+    }
+
+    function logout() {
+      window.location.href = 'index.html'; // Redirect to the signup page
+    }
+  </script>
+</body>
+
+</html>

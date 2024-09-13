@@ -68,7 +68,7 @@
                     <a href="comp_chart.html" class="nav-item">Org Chart</a>
                     <a href="vacancies.html" class="nav-item">Job Vacancies</a>
                     <a href="campus-drive.html" class="nav-item active">Campus Drive</a>
-                    <a href="index.html" class="nav-item">My Profile</a>
+                    <a href="hr_profile.html" class="nav-item">My Profile</a>
                 </nav>
             </div>
             <button class="logout-button" onclick="logout()">Logout</button>
@@ -85,10 +85,6 @@
         </main>
     </div>
     <script>
-
-        function logout() {
-            window.location.href = 'signUp.html'; // Redirect to the signup page
-        }
         const events = [
             { title: "Software Engineering Internship Drive", university: "MIT", date: "September 15, 2024", location: "MIT Campus, Cambridge, MA" },
             { title: "Data Science Graduate Program Recruitment", university: "Stanford University", date: "October 5, 2024", location: "Stanford Campus, Stanford, CA" },
@@ -138,6 +134,10 @@
 
         // Initial render
         renderEvents();
+
+        function logout() {
+            window.location.href = 'index.html'; // Redirect to the signup page
+        }
     </script>
 </body>
 
